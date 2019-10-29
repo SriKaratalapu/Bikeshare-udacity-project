@@ -13,7 +13,7 @@ Thanks to the rise in information technologies, it is easy for a user of the sys
 A bike share system provider for many major cities in the United States. The '''bikeshare.py''' script is used to filter data based on to explore data related to bike share systems for three major cities in the United States—Chicago, New York City, and Washington. The script will import the data and answer interesting questions about it by computing descriptive statistics.
 
 [bikeshare.py]: https://github.com/SriKaratalapu/pdsnd_github/blob/master/bikeshare.py
-[readme.txt]: https://github.com/SriKaratalapu/pdsnd_github/blob/master/readme.txt
+[readme.txt]: https://github.com/SriKaratalapu/pdsnd_github/blob/documentation/readme.txt
 
 ### Files used
 - [bikeshare.py]
