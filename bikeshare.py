@@ -19,10 +19,9 @@ def user_input_check(data_type, check_list):
     Returns:
         Valid user input to the get_filters function if not reruns the function until
         a valid option is given.
- 
+
     """
-    question = "Please enter the {} to analyze data: ".format(data_type)
-    user_input = input(question)
+    user_input = input("Please enter the {} to analyze data: ".format(data_type))
     if user_input.lower() in check_list:
         user_input = user_input.lower()
         return user_input
@@ -31,11 +30,13 @@ def user_input_check(data_type, check_list):
                "the list {}".format(data_type, data_type, check_list))
         user_input_check(data_type, check_list)
 
+def print_pattern(pattern,count):
+    print(str(pattern) * count)
 
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
- 
+
     Returns:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -54,14 +55,14 @@ def get_filters():
         day = user_input_check('day', DAYS)
         break
 
-    print('-' * 40)
+    print_pattern('-' , 40)
     return city, month, day
 
 
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
- 
+
     Args:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -100,17 +101,16 @@ def load_data(city, month, day):
 
 def df_validation(column, df):
     """
-    
-    :param column: column index 
+
+    :param column: column index
     :param df: dataframe filterby city, month and date options
-    :return: 
+    :return:
         :exception if column does not exist in the dataframe
     """
     if column in df:
         pass
     else:
         raise Exception("{} column does not exist".format(column))
-
 
 
 def time_stats(df):
@@ -129,7 +129,7 @@ def time_stats(df):
     print("\tMost common hour of the day: ", df['Hour'].mode()[0])
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
+    print_pattern('-' , 40)
 
 
 def station_stats(df):
@@ -137,7 +137,7 @@ def station_stats(df):
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
-    
+
     try :
         df_validation('Start Station',df.columns)
         # display most commonly used start station
@@ -151,14 +151,14 @@ def station_stats(df):
         print("\tMost commonly used end station: ", df['End Station'].mode()[0])
     except Exception as e:
         print("\t",e)
-        
+
     # display most frequent combination of start station and end station trip
     # Creating a new combo column with Start and End time
     df['Start-End station combo'] = df['Start Station'] + ' and ' + df['End Station']
     print("\tMost commonly used combination of Start and End station: ", df['Start-End station combo'].mode()[0])
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
+    print_pattern('-' , 40)
 
 
 def trip_duration_stats(df):
@@ -173,17 +173,17 @@ def trip_duration_stats(df):
 
         # display mean travel time
         print("\tTotal travel time: ", df['Trip Duration'].mean())
-        
+
     except Exception as e:
         print("\t",e)
-        
+
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
+    print_pattern('-', 40)
 
 
 def user_stat_out(df, stat_index):
     """
- 
+
     :param df: dataframe filtered by aggregator
     :param stat_index: list of index s
     :return:
@@ -203,7 +203,7 @@ def user_stats(df):
 
     print('\nCalculating User Stats...\n')
     start_time = time.time()
-    
+
     try:
         df_validation('User Type', df.columns)
         # Display counts of user types
@@ -225,24 +225,24 @@ def user_stats(df):
                                     df['Gender'].count()))
     except Exception as e:
         print("\t",e)
- 
+
     try:
         df_validation('Gender', df.columns)
         # Display earliest, most recent, and most common year of birth
         print("\n\tEarliest Year of Birth:", int(df['Birth Year'].min()))
         print("\tMost recent Year of Birth:", int(df['Birth Year'].max()))
         print("\tMost common Year of Birth:", int(df['Birth Year'].mode()[0]))
-        
+
     except Exception as e:
         print("\t",e)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
+    print_pattern('*', 40)
 
 
 def raw_output(df, start_index):
     """
- 
+
     :param df: Dataframe for printing 5 lines at time
     :param start_index: dataframe start index for rows to be printed
     print five rows of dataframe as long as the user says yes
@@ -280,4 +280,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
