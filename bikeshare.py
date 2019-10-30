@@ -30,6 +30,8 @@ def user_input_check(data_type, check_list):
                "the list {}".format(data_type, data_type, check_list))
         user_input_check(data_type, check_list)
 
+def print_pattern(pattern,count):
+    print(str(pattern) * count)
 
 def get_filters():
     """
@@ -53,7 +55,7 @@ def get_filters():
         day = user_input_check('day', DAYS)
         break
 
-    print('-' * 40)
+    print_pattern('-' , 40)
     return city, month, day
 
 
@@ -111,7 +113,6 @@ def df_validation(column, df):
         raise Exception("{} column does not exist".format(column))
 
 
-
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -128,7 +129,7 @@ def time_stats(df):
     print("\tMost common hour of the day: ", df['Hour'].mode()[0])
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
+    print_pattern('-' , 40)
 
 
 def station_stats(df):
@@ -157,7 +158,7 @@ def station_stats(df):
     print("\tMost commonly used combination of Start and End station: ", df['Start-End station combo'].mode()[0])
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
+    print_pattern('-' , 40)
 
 
 def trip_duration_stats(df):
@@ -177,7 +178,7 @@ def trip_duration_stats(df):
         print("\t",e)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
+    print_pattern('-', 40)
 
 
 def user_stat_out(df, stat_index):
@@ -236,7 +237,7 @@ def user_stats(df):
         print("\t",e)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-' * 40)
+    print_pattern('*', 40)
 
 
 def raw_output(df, start_index):
